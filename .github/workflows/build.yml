@@ -1,0 +1,12 @@
+name: Build
+on: [push]
+jobs:
+  lint:
+    name: Build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: make docker-build
+      - name: Run
+        run: make docker-run
