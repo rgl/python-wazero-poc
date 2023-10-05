@@ -5,9 +5,9 @@ example: python.wasm lib *.py *.go go.*
 	go build
 
 python.wasm lib:
-	rm -rf python.wasm lib python-3.11.5-wasi_sdk-20.zip
-	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.11.5/python-3.11.5-wasi_sdk-20.zip
-	unzip python-3.11.5-wasi_sdk-20.zip
+	rm -rf python.wasm lib python-3.12.0-wasi_sdk-20.zip
+	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.12.0/python-3.12.0-wasi_sdk-20.zip
+	unzip python-3.12.0-wasi_sdk-20.zip
 
 docker-build:
 	docker build --progress=plain --tag=python-wazero .

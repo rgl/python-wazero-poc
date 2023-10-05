@@ -20,7 +20,7 @@ var python []byte
 //go:embed main.py
 var script string
 
-const pythonLibRelativePath = "lib/python3.11"
+const pythonLibRelativePath = "lib/python3.12"
 
 func main() {
 	// ensure the python library exists.
