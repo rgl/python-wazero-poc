@@ -1,4 +1,4 @@
 lib/
-wazero-*/
+.cache/
 python*
 example

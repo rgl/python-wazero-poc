@@ -41,7 +41,7 @@ func main() {
 	// NB unfortunately, this also means that in the long-run, it will contain
 	//    stalled data. so we should probably disable this entirely, and let it
 	//    compile every time.
-	cache, err := wazero.NewCompilationCacheWithDir(".")
+	cache, err := wazero.NewCompilationCacheWithDir(".cache")
 	if err != nil {
 		log.Fatalf("error creating the compilation cache: %v", err)
 	}
