@@ -1,4 +1,5 @@
 lib/
 .cache/
+output/
 python*
 example
