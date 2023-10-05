@@ -61,15 +61,11 @@ func main() {
 	}
 
 	mfs := memoryfs.New()
-	err = mfs.MkdirAll("output", 0)
-	if err != nil {
-		log.Fatalf("error creating the output directory: %v", err)
-	}
-	err = mfs.WriteFile("output/test.txt", []byte("test"), 0)
+	err = mfs.WriteFile("from-host.txt", []byte("from host"), 0)
 	if err != nil {
 		log.Fatalf("error creating the test file: %v", err)
 	}
-	files, err := mfs.Glob("*/*")
+	files, err := mfs.Glob("*")
 	if err != nil {
 		log.Fatalf("error glob: %v", err)
 	}
@@ -84,7 +80,7 @@ func main() {
 		WithRandSource(rand.Reader).
 		WithFSConfig(wazero.NewFSConfig().
 			// TODO even thou we have a working FS, why isn't the python script seeing this FSMount?
-			WithFSMount(mfs, "/").
+			WithFSMount(mfs, "/output").
 			WithReadOnlyDirMount(pythonLibPath, fmt.Sprintf("/usr/local/%s", pythonLibRelativePath))).
 		WithSysNanosleep().
 		WithSysNanotime().
