@@ -19,9 +19,9 @@ example: python.wasm lib *.py *.go go.*
 	go build
 
 python.wasm lib:
-	rm -rf python.wasm lib python-3.12.0-wasi_sdk-20.zip
-	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.12.0/python-3.12.0-wasi_sdk-20.zip
-	unzip python-3.12.0-wasi_sdk-20.zip
+	rm -rf python.wasm lib python-3.12.1-wasi_sdk-20.zip
+	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.12.1/python-3.12.1-wasi_sdk-20.zip
+	unzip python-3.12.1-wasi_sdk-20.zip
 
 wazero:
 	wget https://github.com/tetratelabs/wazero/releases/download/v1.5.0/wazero_1.5.0_linux_amd64.tar.gz
