@@ -24,8 +24,8 @@ python.wasm lib:
 	unzip python-3.12.1-wasi_sdk-20.zip
 
 wazero:
-	wget https://github.com/tetratelabs/wazero/releases/download/v1.5.0/wazero_1.5.0_linux_amd64.tar.gz
-	tar xf wazero_1.5.0_linux_amd64.tar.gz wazero
+	wget https://github.com/tetratelabs/wazero/releases/download/v1.6.0/wazero_1.6.0_linux_amd64.tar.gz
+	tar xf wazero_1.6.0_linux_amd64.tar.gz wazero
 
 docker-build:
 	docker build --progress=plain --tag=python-wazero .

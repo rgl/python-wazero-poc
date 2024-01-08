@@ -83,7 +83,7 @@ func main() {
 	// 			python.wasm \
 	// 			-- \
 	// 			-c "$(cat main.py)"
-	// see https://github.com/tetratelabs/wazero/blob/v1.5.0/cmd/wazero/wazero.go
+	// see https://github.com/tetratelabs/wazero/blob/v1.6.0/cmd/wazero/wazero.go
 	moduleConfig := wazero.NewModuleConfig().
 		WithStdout(os.Stdout).
 		WithStderr(os.Stderr).
