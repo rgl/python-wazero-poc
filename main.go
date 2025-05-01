@@ -20,7 +20,7 @@ var python []byte
 //go:embed main.py
 var script string
 
-const pythonLibRelativePath = "lib/python3.12"
+const pythonLibRelativePath = "lib/python3.13"
 
 func main() {
 	// ensure the python library exists.
@@ -78,12 +78,12 @@ func main() {
 	//		./wazero \
 	// 			run \
 	// 			-cachedir=.cache \
-	// 			-mount=$PWD/lib/python3.12:/usr/local/lib/python3.12:ro \
+	// 			-mount=$PWD/lib/python3.13:/usr/local/lib/python3.13:ro \
 	// 			-mount=$PWD/output:/output \
 	// 			python.wasm \
 	// 			-- \
 	// 			-c "$(cat main.py)"
-	// see https://github.com/tetratelabs/wazero/blob/v1.6.0/cmd/wazero/wazero.go
+	// see https://github.com/tetratelabs/wazero/blob/v1.9.0/cmd/wazero/wazero.go
 	moduleConfig := wazero.NewModuleConfig().
 		WithStdout(os.Stdout).
 		WithStderr(os.Stderr).

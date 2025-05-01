@@ -2,14 +2,19 @@ SHELL=bash
 .SHELLFLAGS=-euo pipefail -c
 
 run: example
+	rm -rf output
+	install -d output
+	echo 'from host' >output/from-host.txt
 	./example
 
 run-wazero: wazero
-	mkdir -p output && echo 'from host'>output/from-host.txt
+	rm -rf output
+	install -d output
+	echo 'from host' >output/from-host.txt
 	./wazero \
 		run \
 		-cachedir=.cache \
-		-mount=$$PWD/lib/python3.12:/usr/local/lib/python3.12:ro \
+		-mount=$$PWD/lib/python3.13:/usr/local/lib/python3.13:ro \
 		-mount=$$PWD/output:/output \
 		python.wasm \
 		-- \
@@ -19,13 +24,13 @@ example: python.wasm lib *.py *.go go.*
 	go build
 
 python.wasm lib:
-	rm -rf python.wasm lib python-3.12.1-wasi_sdk-20.zip
-	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.12.1/python-3.12.1-wasi_sdk-20.zip
-	unzip python-3.12.1-wasi_sdk-20.zip
+	rm -rf python.wasm lib python-3.13.3-wasi_sdk-24.zip
+	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.13.3/python-3.13.3-wasi_sdk-24.zip
+	unzip python-3.13.3-wasi_sdk-24.zip
 
 wazero:
-	wget https://github.com/tetratelabs/wazero/releases/download/v1.6.0/wazero_1.6.0_linux_amd64.tar.gz
-	tar xf wazero_1.6.0_linux_amd64.tar.gz wazero
+	wget https://github.com/tetratelabs/wazero/releases/download/v1.9.0/wazero_1.9.0_linux_amd64.tar.gz
+	tar xf wazero_1.9.0_linux_amd64.tar.gz wazero
 
 docker-build:
 	docker build --progress=plain --tag=python-wazero .

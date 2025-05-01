@@ -1,4 +1,6 @@
-FROM golang:1.21-bookworm AS build
+# syntax=docker.io/docker/dockerfile:1.15
+
+FROM golang:1.24.2-bookworm AS build
 RUN <<EOF
 set -eux
 apt-get update
