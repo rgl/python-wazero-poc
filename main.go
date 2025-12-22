@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/rand"
 	_ "embed"
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -20,7 +19,7 @@ var python []byte
 //go:embed main.py
 var script string
 
-const pythonLibRelativePath = "lib/python3.13"
+const pythonLibRelativePath = "lib"
 
 func main() {
 	// ensure the python library exists.
@@ -78,12 +77,12 @@ func main() {
 	//		./wazero \
 	// 			run \
 	// 			-cachedir=.cache \
-	// 			-mount=$PWD/lib/python3.13:/usr/local/lib/python3.13:ro \
+	// 			-mount=$PWD/lib:/usr/local/lib/python3.14:ro \
 	// 			-mount=$PWD/output:/output \
 	// 			python.wasm \
 	// 			-- \
 	// 			-c "$(cat main.py)"
-	// see https://github.com/tetratelabs/wazero/blob/v1.9.0/cmd/wazero/wazero.go
+	// see https://github.com/tetratelabs/wazero/blob/v1.11.0/cmd/wazero/wazero.go
 	moduleConfig := wazero.NewModuleConfig().
 		WithStdout(os.Stdout).
 		WithStderr(os.Stderr).
@@ -92,7 +91,7 @@ func main() {
 		WithFSConfig(wazero.NewFSConfig().
 			// TODO even thou we have a working FS, why isn't the python script seeing this FSMount?
 			WithFSMount(mfs, "/output").
-			WithReadOnlyDirMount(pythonLibPath, fmt.Sprintf("/usr/local/%s", pythonLibRelativePath))).
+			WithReadOnlyDirMount(pythonLibPath, "/usr/local/lib/python3.14")).
 		WithSysNanosleep().
 		WithSysNanotime().
 		WithSysWalltime().

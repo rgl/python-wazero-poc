@@ -1,6 +1,6 @@
-# syntax=docker.io/docker/dockerfile:1.15
+# syntax=docker.io/docker/dockerfile:1.20
 
-FROM golang:1.24.2-bookworm AS build
+FROM golang:1.25.5-trixie AS build
 RUN <<EOF
 set -eux
 apt-get update
@@ -16,7 +16,7 @@ RUN go mod download
 COPY *.go *.py ./
 RUN CGO_ENABLED=0 go build -ldflags="-s"
 
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 WORKDIR /app
 COPY --from=build /build/lib ./lib/
 COPY --from=build /build/example ./

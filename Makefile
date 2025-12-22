@@ -14,7 +14,7 @@ run-wazero: wazero
 	./wazero \
 		run \
 		-cachedir=.cache \
-		-mount=$$PWD/lib/python3.13:/usr/local/lib/python3.13:ro \
+		-mount=$$PWD/lib:/usr/local/lib/python3.14:ro \
 		-mount=$$PWD/output:/output \
 		python.wasm \
 		-- \
@@ -24,13 +24,13 @@ example: python.wasm lib *.py *.go go.*
 	go build
 
 python.wasm lib:
-	rm -rf python.wasm lib python-3.13.3-wasi_sdk-24.zip
-	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.13.3/python-3.13.3-wasi_sdk-24.zip
-	unzip python-3.13.3-wasi_sdk-24.zip
+	rm -rf python.wasm lib python-3.14.2-wasi_sdk-24.zip
+	wget https://github.com/brettcannon/cpython-wasi-build/releases/download/v3.14.2/python-3.14.2-wasi_sdk-24.zip
+	unzip python-3.14.2-wasi_sdk-24.zip
 
 wazero:
-	wget https://github.com/tetratelabs/wazero/releases/download/v1.9.0/wazero_1.9.0_linux_amd64.tar.gz
-	tar xf wazero_1.9.0_linux_amd64.tar.gz wazero
+	wget https://github.com/tetratelabs/wazero/releases/download/v1.11.0/wazero_1.11.0_linux_amd64.tar.gz
+	tar xf wazero_1.11.0_linux_amd64.tar.gz wazero
 
 docker-build:
 	docker build --progress=plain --tag=python-wazero .
